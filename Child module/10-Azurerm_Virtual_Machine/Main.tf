@@ -1,3 +1,9 @@
+data "azurerm_network_interface" "nic" {
+  for_each            = var.vms
+  name                = each.value.network_interface_name
+  resource_group_name = each.value.resource_group_name
+}
+
 resource "azurerm_linux_virtual_machine" "vms" {
 
   for_each = var.vms
@@ -12,7 +18,7 @@ resource "azurerm_linux_virtual_machine" "vms" {
 
   disable_password_authentication = false
 
-  network_interface_ids = each.value.network_interface_ids
+  network_interface_ids = [data.azurerm_network_interface.nic[each.key].id]
 
   os_disk {
     caching              = each.value.caching
