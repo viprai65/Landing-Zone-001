@@ -1,0 +1,21 @@
+name: Terraform CI - Plan
+
+on:
+  push:
+    branches:
+      - "feature/3rdrg_add"
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  terraform-plan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Test Pipeline
+        run: echo "CI Pipeline Started Successfully"
