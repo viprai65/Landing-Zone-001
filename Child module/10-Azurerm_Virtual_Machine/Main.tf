@@ -22,7 +22,7 @@ resource "azurerm_linux_virtual_machine" "vms" {
   source_image_reference {
     publisher = each.value.publisher
     offer     = each.value.offer
-    sku        = each.value.sku
-    version    = each.value.version
+    sku       = each.value.sku
+    version   = each.value.version
   }
 }

@@ -1,7 +1,11 @@
-name: Terraform CD - Apply
+name: Terraform CI - Plan
 
 on:
   push:
+    branches:
+      - feature/3rdrg_add
+
+  pull_request:
     branches:
       - main
 
@@ -10,31 +14,21 @@ permissions:
   id-token: write
 
 jobs:
-
-  terraform-apply:
-
-    name: Terraform Apply
-
+  terraform-plan:
+    name: Terraform Plan
     runs-on: ubuntu-latest
-
-    environment:
-      name: production
 
     defaults:
       run:
-        working-directory: Parent module
+        working-directory: "Parent module"
 
     steps:
-
-      # 1. Checkout code
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 2. Setup Terraform
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
-      # 3. Azure Login
       - name: Azure Login
         uses: azure/login@v2
         with:
@@ -42,17 +36,14 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      # 4. Terraform Init
-      - name: Terraform Init
-        run: terraform init
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
 
-      # 5. Terraform Validate
+      - name: Terraform Init
+        run: terraform init -input=false
+
       - name: Terraform Validate
         run: terraform validate
 
-      # 6. Terraform Apply
-      - name: Terraform Apply
-        run: |
-          terraform apply \
-            -var-file="Terraform.tfvars" \
-            -auto-approve
+      - name: Terraform Plan
+        run: terraform plan -input=false -var-file="Terraform.tfvars"
