@@ -3,18 +3,6 @@ resource_group = {
     name     = "insider_rg1"
     location = "central india"
   }
-  rg2 = {
-    name     = "insider_rg2"
-    location = "central india"
-  }
-  rg3 = {
-    name     = "insider_rg3"
-    location = "central india"
-  }
-  rg4 = {
-    name     = "insider_rg4"
-    location = "central india"
-  }
 }
 
 storage_account = {
@@ -30,7 +18,7 @@ storage_account = {
 containers = {
   container1 = {
     name                  = "container1"
-    storage_account_id    = "/subscriptions/f571aa99-7d30-41b0-b690-0be824893194/resourceGroups/insider_rg1/providers/Microsoft.Storage/storageAccounts/insiderstt"
+    storage_account_id    = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Storage/storageAccounts/insiderstt"
     container_access_type = "private"
   }
 }
@@ -83,7 +71,7 @@ network_interface = {
     resource_group_name = "insider_rg1"
 
     ip_name                       = "internal"
-    subnet_id                     = "/subscriptions/f571aa99-7d30-41b0-b690-0be824893194/resourceGroups/insider_rg1/providers/Microsoft.Network/virtualNetworks/insider_vnet1/subnets/frontend-subnet"
+    subnet_id                     = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/virtualNetworks/insider_vnet1/subnets/frontend-subnet"
     private_ip_address_allocation = "Dynamic"
   }
   nic2 = {
@@ -92,7 +80,7 @@ network_interface = {
     resource_group_name = "insider_rg1"
 
     ip_name                       = "internal"
-    subnet_id                     = "/subscriptions/f571aa99-7d30-41b0-b690-0be824893194/resourceGroups/insider_rg1/providers/Microsoft.Network/virtualNetworks/insider_vnet1/subnets/backend-subnet"
+    subnet_id                     = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/virtualNetworks/insider_vnet1/subnets/backend-subnet"
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -132,12 +120,12 @@ network_securuty_group = {
 
 network_security_group_asso = {
   frontend_nic_nsg_asso = {
-    network_interface_id      = "/subscriptions/f571aa99-7d30-41b0-b690-0be824893194/resourceGroups/insider_rg1/providers/Microsoft.Network/networkInterfaces/frontend_nic"
-    network_security_group_id = "/subscriptions/f571aa99-7d30-41b0-b690-0be824893194/resourceGroups/insider_rg1/providers/Microsoft.Network/networkSecurityGroups/frontend_nsg"
+    network_interface_id      = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/networkInterfaces/frontend_nic"
+    network_security_group_id = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/networkSecurityGroups/frontend_nsg"
   }
   backend_nic_nsg_asso = {
-    network_interface_id      = "/subscriptions/f571aa99-7d30-41b0-b690-0be824893194/resourceGroups/insider_rg1/providers/Microsoft.Network/networkInterfaces/backend_nic"
-    network_security_group_id = "/subscriptions/f571aa99-7d30-41b0-b690-0be824893194/resourceGroups/insider_rg1/providers/Microsoft.Network/networkSecurityGroups/backend_nsg"
+    network_interface_id      = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/networkInterfaces/backend_nic"
+    network_security_group_id = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/networkSecurityGroups/backend_nsg"
   }
 }
 
@@ -152,7 +140,7 @@ linux_virtual_machine = {
     admin_password                  = "Admin@123456"
     disable_password_authentication = false
 
-    network_interface_ids = ["/subscriptions/f571aa99-7d30-41b0-b690-0be824893194/resourceGroups/insider_rg1/providers/Microsoft.Network/networkInterfaces/frontend_nic"]
+    network_interface_ids = ["/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/networkInterfaces/frontend_nic"]
 
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
@@ -172,7 +160,7 @@ linux_virtual_machine = {
     admin_password                  = "Admin@123456"
     disable_password_authentication = false
 
-    network_interface_ids = ["/subscriptions/f571aa99-7d30-41b0-b690-0be824893194/resourceGroups/insider_rg1/providers/Microsoft.Network/networkInterfaces/backend_nic"]
+    network_interface_ids = ["/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/networkInterfaces/backend_nic"]
 
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
@@ -191,7 +179,7 @@ bastians = {
     resource_group_name = "insider_rg1"
 
     ip_name              = "Bastian-IP"
-    subnet_id            = "/subscriptions/f571aa99-7d30-41b0-b690-0be824893194/resourceGroups/insider_rg1/providers/Microsoft.Network/virtualNetworks/insider_vnet1/subnets/AzureBastionSubnet"
-    public_ip_address_id = "/subscriptions/f571aa99-7d30-41b0-b690-0be824893194/resourceGroups/insider_rg1/providers/Microsoft.Network/publicIPAddresses/bastian_ip"
+    subnet_id            = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/virtualNetworks/insider_vnet1/subnets/AzureBastionSubnet"
+    public_ip_address_id = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/publicIPAddresses/bastian_ip"
   }
 }
