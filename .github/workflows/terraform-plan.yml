@@ -3,29 +3,25 @@ name: Terraform CI - Plan
 on:
   push:
     branches:
-      - "feature/3rdrg_add"
+      - feature/3rdrg_add
 
   pull_request:
     branches:
       - main
 
-permissions:cd ..
-
+permissions:
   contents: read
 
 jobs:
-
   terraform-plan:
-
     name: Terraform Plan
     runs-on: ubuntu-latest
 
     defaults:
       run:
-        working-directory: Parent module
+        working-directory: "Parent module"
 
     steps:
-
       - name: Checkout Code
         uses: actions/checkout@v4
 
@@ -42,7 +38,4 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: |
-          terraform plan \
-            -input=false \
-            -var-file="Terraform.tfvars"
+        run: terraform plan -input=false -var-file="Terraform.tfvars"
