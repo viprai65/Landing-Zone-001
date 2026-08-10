@@ -46,9 +46,9 @@ module "network_securuty_group" {
 }
 
 module "network_security_group_asso" {
-  source  = "../Child module/9-Azurerm_NSG_NIC_Association"
-  depends_on = [ module.network_securuty_group ]
-  nsgasso = var.network_security_group_asso
+  source     = "../Child module/9-Azurerm_NSG_NIC_Association"
+  depends_on = [module.network_securuty_group]
+  nsgasso    = var.network_security_group_asso
 }
 
 module "linux_virtual_machine" {

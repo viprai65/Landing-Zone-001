@@ -3,15 +3,15 @@ resource_group = {
     name     = "insider_rg1"
     location = "central india"
   }
-   rg2 = {
+  rg2 = {
     name     = "insider_rg2"
     location = "central india"
   }
-    rg3 = {
+  rg3 = {
     name     = "insider_rg3"
     location = "central india"
   }
-  }
+}
 
 storage_account = {
   stg1 = {
