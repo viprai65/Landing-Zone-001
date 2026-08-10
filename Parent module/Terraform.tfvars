@@ -7,7 +7,7 @@ resource_group = {
 
 storage_account = {
   stg1 = {
-    name                     = "insiderstt"
+    name                     = "insiderstt2"
     resource_group_name      = "insider_rg1"
     location                 = "central india"
     account_tier             = "Standard"
@@ -18,7 +18,8 @@ storage_account = {
 containers = {
   container1 = {
     name                  = "container1"
-    storage_account_id    = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Storage/storageAccounts/insiderstt"
+    storage_account_name  = "insiderstt2"
+    resource_group_name   = "insider_rg1"
     container_access_type = "private"
   }
 }
@@ -71,7 +72,8 @@ network_interface = {
     resource_group_name = "insider_rg1"
 
     ip_name                       = "internal"
-    subnet_id                     = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/virtualNetworks/insider_vnet1/subnets/frontend-subnet"
+    subnet_name                   = "frontend-subnet"
+    virtual_network_name          = "insider_vnet1"
     private_ip_address_allocation = "Dynamic"
   }
   nic2 = {
@@ -80,7 +82,8 @@ network_interface = {
     resource_group_name = "insider_rg1"
 
     ip_name                       = "internal"
-    subnet_id                     = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/virtualNetworks/insider_vnet1/subnets/backend-subnet"
+    subnet_name                   = "backend-subnet"
+    virtual_network_name          = "insider_vnet1"
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -120,12 +123,14 @@ network_securuty_group = {
 
 network_security_group_asso = {
   frontend_nic_nsg_asso = {
-    network_interface_id      = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/networkInterfaces/frontend_nic"
-    network_security_group_id = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/networkSecurityGroups/frontend_nsg"
+    network_interface_name      = "frontend_nic"
+    network_security_group_name = "frontend_nsg"
+    resource_group_name         = "insider_rg1"
   }
   backend_nic_nsg_asso = {
-    network_interface_id      = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/networkInterfaces/backend_nic"
-    network_security_group_id = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/networkSecurityGroups/backend_nsg"
+    network_interface_name      = "backend_nic"
+    network_security_group_name = "backend_nsg"
+    resource_group_name         = "insider_rg1"
   }
 }
 
@@ -140,7 +145,7 @@ linux_virtual_machine = {
     admin_password                  = "Admin@123456"
     disable_password_authentication = false
 
-    network_interface_ids = ["/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/networkInterfaces/frontend_nic"]
+    network_interface_name = "frontend_nic"
 
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
@@ -160,7 +165,7 @@ linux_virtual_machine = {
     admin_password                  = "Admin@123456"
     disable_password_authentication = false
 
-    network_interface_ids = ["/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/networkInterfaces/backend_nic"]
+    network_interface_name = "backend_nic"
 
     caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
@@ -179,7 +184,8 @@ bastians = {
     resource_group_name = "insider_rg1"
 
     ip_name              = "Bastian-IP"
-    subnet_id            = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/virtualNetworks/insider_vnet1/subnets/AzureBastionSubnet"
-    public_ip_address_id = "/subscriptions/1c1eb868-4a53-4214-a49e-1ac09c600d8b/resourceGroups/insider_rg1/providers/Microsoft.Network/publicIPAddresses/bastian_ip"
+    subnet_name          = "AzureBastionSubnet"
+    virtual_network_name = "insider_vnet1"
+    public_ip_name       = "bastian_ip"
   }
 }
