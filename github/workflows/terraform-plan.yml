@@ -1,0 +1,62 @@
+name: Terraform CI - Plan
+
+on:
+  push:
+    branches:
+      - feature
+
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  id-token: write
+  pull-requests: write
+
+jobs:
+  terraform-plan:
+
+    name: Terraform Plan
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: Parent module
+
+    steps:
+
+      # 1. Checkout source code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Install Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      # 3. Terraform Format Check
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+
+      # 4. Azure Login
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # 5. Terraform Init
+      - name: Terraform Init
+        run: terraform init
+
+      # 6. Terraform Validate
+      - name: Terraform Validate
+        run: terraform validate
+
+      # 7. Terraform Plan
+      - name: Terraform Plan
+        run: |
+          terraform plan \
+            -var-file="Terraform.tfvars" \
+            -out=tfplan
