@@ -92,36 +92,69 @@ network_interface = {
   }
 }
 
-network_securuty_group = {
+network_security_group = {
   nsg1 = {
     name                = "frontend_nsg"
     location            = "central india"
     resource_group_name = "insider_rg1"
 
-    security_rule_name         = "allow_ssh"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
+    security_rules = {
+      allow_ssh = {
+        name                       = "allow_ssh"
+        priority                   = 100
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "22"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+      }
+
+      allow_http = {
+        name                       = "allow_http"
+        priority                   = 110
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "80"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+      }
+    }
   }
+
   nsg2 = {
     name                = "backend_nsg"
     location            = "central india"
     resource_group_name = "insider_rg1"
 
-    security_rule_name         = "allow_ssh"
-    priority                   = 100
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
+    security_rules = {
+      allow_ssh = {
+        name                       = "allow_ssh"
+        priority                   = 100
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "22"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+      }
+
+      allow_http = {
+        name                       = "allow_http"
+        priority                   = 110
+        direction                  = "Inbound"
+        access                     = "Allow"
+        protocol                   = "Tcp"
+        source_port_range          = "*"
+        destination_port_range     = "80"
+        source_address_prefix      = "*"
+        destination_address_prefix = "*"
+      }
+    }
   }
 }
 
