@@ -3,6 +3,10 @@ resource_group = {
     name     = "insider_rg1"
     location = "central india"
   }
+    rg1 = {
+    name     = "insider_rg2"
+    location = "central india"
+  }
 }
 
 storage_account = {
