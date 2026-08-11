@@ -12,7 +12,7 @@ variable "public_ip" {}
 
 variable "network_interface" {}
 
-variable "network_securuty_group" {}
+variable "network_security_group" {}
 
 variable "network_security_group_asso" {}
 

@@ -42,7 +42,7 @@ module "netwotk_interface" {
 module "network_securuty_group" {
   source     = "../Child module/8-Azurerm_Network_Security_Group"
   depends_on = [module.netwotk_interface]
-  nsgs       = var.network_securuty_group
+  nsgs       = var.network_security_group
 }
 
 module "network_security_group_asso" {
