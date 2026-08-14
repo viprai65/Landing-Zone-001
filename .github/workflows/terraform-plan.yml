@@ -53,12 +53,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if gh pr view --base main --head feature/code_updated >/dev/null 2>&1; then
+          if gh pr view --base main --head 2ndRG-update >/dev/null 2>&1; then
             echo "Pull Request already exists. No new PR created."
           else
             gh pr create \
               --base main \
-              --head feature/code_updated \
-              --title "Terraform Changes - feature/code_updated" \
+              --head 2ndRG-update \
+              --title "Terraform Changes - 2ndRG-update" \
               --body "Terraform plan completed successfully. Please review and approve this PR."
           fi
