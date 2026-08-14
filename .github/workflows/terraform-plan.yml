@@ -3,7 +3,7 @@ name: Terraform CI - Plan
 on:
   push:
     branches:
-      - feature/code_updated
+      - 2ndRG-update
 
   pull_request:
     branches:
