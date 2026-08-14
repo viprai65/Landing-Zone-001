@@ -41,5 +41,5 @@ jobs:
       - name: Terraform Validate
         run: terraform validate
 
-      - name: Terraform Apply
-        run: terraform apply -input=false -auto-approve -var-file="Terraform.tfvars"
+      # - name: Terraform Apply
+      #   run: terraform apply -input=false -auto-approve -var-file="Terraform.tfvars"

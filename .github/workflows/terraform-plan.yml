@@ -27,6 +27,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
@@ -60,5 +63,6 @@ jobs:
               --base main \
               --head 2ndRG-update \
               --title "Terraform Changes - 2ndRG-update" \
-              --body "Terraform plan completed successfully. Please review and approve this PR."
+              --body "Terraform plan completed successfully. Please review and approve this PR." \
+              --reviewer thelordloki
           fi
